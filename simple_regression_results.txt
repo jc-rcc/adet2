@@ -1,0 +1,24 @@
+
+======================================================================
+SIMPLE LINEAR REGRESSION RESULTS
+======================================================================
+     Predictor  Intercept  Slope     R²  p-value Significant?
+milesTravelled     3.1856 0.0403 0.8615   0.0001          Yes
+ numDeliveries     4.8454 0.4983 0.8399   0.0002          Yes
+      gasPrice     3.5365 0.8113 0.0714   0.4555           No
+
+======================================================================
+INTERPRETATION OF STRONGEST MODEL (milesTravelled)
+======================================================================
+
+1. Regression Equation:
+   travelTime = 3.1856 + 0.0403 * milesTravelled
+
+2. Slope Interpretation:
+   Kada dagdag ng 1 mile sa milesTravelled, tumataas ang travelTime ng 0.0403 hours.
+
+3. R-squared Interpretation:
+   86.2% ng variation sa travelTime ay nae-explain ng milesTravelled.
+
+4. Statistical Significance:
+   Yes, statistically significant at alpha = 0.05 (p-value = 0.0001 < 0.05).

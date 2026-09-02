@@ -1,0 +1,52 @@
+Part 8 - Variable Selection Challenge
+======================================
+
+Recommendation: Remove numDeliveries (Option A)
+Keep milesTravelled and gasPrice for the reduced model.
+
+Questions and Answers
+---------------------
+
+1. Which variable, if any, would you remove?
+   Answer: numDeliveries.
+
+2. What evidence supports your decision?
+   Answer: numDeliveries has the highest VIF (17.35), showing serious
+   multicollinearity. It is highly redundant with milesTravelled
+   (correlation = 0.96), so it adds little unique information. In the full
+   model it was not statistically significant (p-value = 0.2488).
+   milesTravelled is a more intuitive and stronger predictor on its own
+   (R-squared = 0.86), so numDeliveries is the clearest variable to remove.
+
+3. Build the reduced model.
+   Answer: travelTime = 3.8676 + 0.0414(milesTravelled) - 0.2191(gasPrice)
+
+4. Compare the full and reduced models.
+   Answer:
+
+   Full model (3 predictors):
+   - R-squared = 0.8947, Adjusted R-squared = 0.8420
+   - milesTravelled = 0.0141 (p = 0.5483, not sig)
+   - numDeliveries = 0.3832 (p = 0.2488, not sig)
+   - gasPrice = -0.6066 (p = 0.2932, not sig)
+   - No individual predictor is significant; coefficients are unstable due
+     to multicollinearity.
+
+   Reduced model (milesTravelled + gasPrice):
+   - R-squared = 0.8661, Adjusted R-squared = 0.8278
+   - milesTravelled = 0.0414 (p = 0.0004, significant)
+   - gasPrice = -0.2191 (p = 0.6407, not significant)
+   - milesTravelled is now statistically significant, giving a stable and
+     interpretable coefficient.
+
+   The reduced model loses only a small amount of R-squared (0.8947 vs
+   0.8661) while becoming much more interpretable.
+
+5. State which model you recommend and why.
+   Answer: I recommend the reduced model (milesTravelled + gasPrice).
+   It remains a strong model (R-squared = 0.8661, adjusted R-squared =
+   0.8278) but removes the multicollinearity problem, producing a stable,
+   statistically significant coefficient for milesTravelled. Keeping
+   gasPrice preserves a useful control variable for prediction. The slight
+   drop in R-squared is worth the big gain in interpretability and
+   coefficient stability.

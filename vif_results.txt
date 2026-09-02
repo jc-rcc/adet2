@@ -1,0 +1,38 @@
+Part 7 - Multicollinearity and VIF
+===================================
+
+VIF TABLE
+---------
+Variable          VIF      Interpretation
+milesTravelled   14.9360   Serious
+numDeliveries    17.3531   Serious
+gasPrice          1.7138   Low
+
+Questions and Answers
+---------------------
+
+1. Which variable has the highest VIF?
+   Answer: numDeliveries (VIF = 17.3531).
+
+2. Which variables show evidence of serious multicollinearity?
+   Answer: milesTravelled (VIF = 14.94) and numDeliveries (VIF = 17.35)
+   show serious multicollinearity since both exceed VIF = 10. gasPrice
+   (VIF = 1.71) is low and not collinear.
+
+3. In your own words, what does a high VIF mean?
+   Answer: A high VIF means the variable is almost fully explained by the
+   other predictors, so it carries little unique information of its own.
+   The regression cannot isolate its separate effect on travelTime, making
+   its coefficient unstable and its p-value unreliable.
+
+4. Why might milesTravelled and numDeliveries be highly collinear?
+   Answer: Because more deliveries naturally require more miles traveled,
+   so the two move together and the data cannot separate their individual
+   effects on travelTime.
+
+5. Should the variable with the highest VIF automatically be removed?
+   Explain.
+   Answer: No, not automatically. Removal should be based on theory and the
+   model's purpose. Here, dropping one of the collinear variables (e.g.,
+   numDeliveries) is sensible for stable interpretation, but which variable
+   to keep depends on substantive reasoning, not just the VIF value.

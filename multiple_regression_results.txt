@@ -1,0 +1,33 @@
+======================================================================
+MULTIPLE LINEAR REGRESSION RESULTS
+======================================================================
+
+--- Coefficient Table ---
+Term               Coefficient     p-value    Significant?
+----------------------------------------------------------
+Intercept               6.2114      0.0367             Yes
+milesTravelled          0.0141      0.5483              No
+numDeliveries           0.3832      0.2488              No
+gasPrice               -0.6066      0.2932              No
+
+--- 1. Complete Regression Equation ---
+travelTime = 6.2114 + (0.0141 * milesTravelled) + (0.3832 * numDeliveries) + (-0.6066 * gasPrice)
+
+--- 2. Interpret coefficient of milesTravelled ---
+Holding numDeliveries and gasPrice constant, kada dagdag ng 1 mile sa milesTravelled, tumataas/bumababa ang travelTime ng 0.0141 hours.
+
+--- 3. Interpret coefficient of numDeliveries ---
+Holding milesTravelled and gasPrice constant, kada dagdag ng 1 delivery sa numDeliveries, tumataas/bumababa ang travelTime ng 0.3832 hours.
+
+--- 4. Interpret coefficient of gasPrice ---
+Holding milesTravelled and numDeliveries constant, kada dagdag ng $1 sa gasPrice, tumataas/bumababa ang travelTime ng -0.6066 hours.
+
+--- 5. R-squared and Adjusted R-squared ---
+R-squared       = 0.8947
+Adjusted R2     = 0.8420
+
+--- 6. What does R-squared tell you? ---
+89.5% ng variation sa travelTime ay nae-explain ng kombinasyon ng milesTravelled, numDeliveries, at gasPrice.
+
+--- 7. Overall model F-test significance ---
+Yes, overall model is statistically significant (F-test p-value = 0.0025 < 0.05).

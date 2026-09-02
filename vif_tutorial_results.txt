@@ -1,0 +1,109 @@
+========================================================================
+VIF FROM ZERO TO HERO
+========================================================================
+
+########################################################################
+SECTION 0 - ANO ANG VIF?
+########################################################################
+
+   [TAGLISH] Balikan natin. Sa multiple regression, parehong naging non-significant ang milesTravelled at numDeliveries kahit mataas naman ang correlation nila sa travelTime. Bakit? Kasi halos kambal sila (0.96). Ang VIF ang numeric na sukat kung gaano ka-kambal ang isang variable sa mga kasamahan nito.
+   [FORMAL]  Variance Inflation Factor (VIF) quantifies how much the variance of a regression coefficient is inflated due to multicollinearity - how strongly one predictor can be explained by the other predictors.
+
+########################################################################
+SECTION 1 - ANG CONCEPT
+########################################################################
+
+   [TAGLISH] Ang ideya: kunin ang isang variable, tapos subukang i-predict ito gamit ang LAHAT ng ibang predictors. Kung mataas ang R-squared ng pag-predict na 'yon, ibig sabihin alam na ng ibang variables kung ano ang mangyayari sa kanya - redundant o duplicate na siya.
+   [FORMAL]  VIF measures redundancy: if a variable can be accurately predicted from the remaining predictors (high R-squared), it carries little unique information on its own.
+
+########################################################################
+SECTION 2 - ANG FORMULA
+########################################################################
+   VIF = 1 / (1 - R-squared)
+   kung saan ang R-squared ay mula sa pag-regress ng ISANG predictor sa lahat ng iba.
+
+   Interpretation:
+      VIF < 5    -> Low (okay)
+      5 - 10     -> Moderate (may problema)
+      > 10       -> Serious (kailangan aksyunan)
+
+########################################################################
+SECTION 3 - MANUAL COMPUTATION (step-by-step)
+########################################################################
+
+------------------------------------------------------------------------
+=== milesTravelled ===
+   Hakbang 1: i-predict ang milesTravelled gamit ang iba pang predictors
+
+   [TAGLISH] I-regress natin ang milesTravelled sa iba. Ang R-squared na lumabas: 0.9330.
+   Hakbang 2: ipakita ang R-squared = 0.9330
+   Hakbang 3: VIF = 1 / (1 - 0.9330) = 14.9360
+
+   [TAGLISH] 93.30% ng milesTravelled ay alam na ng mga ibang predictors. Bawas na lang 6.70% ang kakaiba. Kaya VIF = 14.94 = Serious.
+   [FORMAL]  93.30% of milesTravelled is explained by the other predictors, leaving only 6.70% unique information. VIF = 14.94 indicates Serious multicollinearity.
+
+------------------------------------------------------------------------
+=== numDeliveries ===
+   Hakbang 1: i-predict ang numDeliveries gamit ang iba pang predictors
+
+   [TAGLISH] I-regress natin ang numDeliveries sa iba. Ang R-squared na lumabas: 0.9424.
+   Hakbang 2: ipakita ang R-squared = 0.9424
+   Hakbang 3: VIF = 1 / (1 - 0.9424) = 17.3531
+
+   [TAGLISH] 94.24% ng numDeliveries ay alam na ng mga ibang predictors. Bawas na lang 5.76% ang kakaiba. Kaya VIF = 17.35 = Serious.
+   [FORMAL]  94.24% of numDeliveries is explained by the other predictors, leaving only 5.76% unique information. VIF = 17.35 indicates Serious multicollinearity.
+
+------------------------------------------------------------------------
+=== gasPrice ===
+   Hakbang 1: i-predict ang gasPrice gamit ang iba pang predictors
+
+   [TAGLISH] I-regress natin ang gasPrice sa iba. Ang R-squared na lumabas: 0.4165.
+   Hakbang 2: ipakita ang R-squared = 0.4165
+   Hakbang 3: VIF = 1 / (1 - 0.4165) = 1.7138
+
+   [TAGLISH] 41.65% ng gasPrice ay alam na ng mga ibang predictors. Bawas na lang 58.35% ang kakaiba. Kaya VIF = 1.71 = Low.
+   [FORMAL]  41.65% of gasPrice is explained by the other predictors, leaving only 58.35% unique information. VIF = 1.71 indicates Low multicollinearity.
+
+########################################################################
+SECTION 4 - BUILT-IN VERIFICATION
+########################################################################
+
+   Paghambingin natin ang manual result vs. built-in function.
+
+   Variable            Manual    Built-in    Interpretation
+   --------------------------------------------------------
+   milesTravelled     14.9360     14.9360           Serious
+   numDeliveries      17.3531     17.3531           Serious
+   gasPrice            1.7138      1.7138               Low
+
+   [TAGLISH] Tugma ang manual at built-in - kumpirmadong tama ang ating manual computation!
+   [FORMAL]  The manual calculation matches the built-in function, confirming the procedure is correct.
+
+########################################################################
+SECTION 5 - HERO: PAGBASA AT PAGGAMIT
+########################################################################
+
+Q1. Alin ang may pinakamataas na VIF? / Which has the highest VIF?
+
+   [TAGLISH] Ang numDeliveries ang pinakamataas (VIF = 17.35).
+   [FORMAL]  The variable with the highest VIF is numDeliveries with VIF = 17.35.
+
+Q2. Aling variables ang may seryosong multicollinearity?
+
+   [TAGLISH] Ang milesTravelled at numDeliveries (parehong > 10). Ang gasPrice ay malinis (1.71).
+   [FORMAL]  milesTravelled (VIF = 14.94) and numDeliveries (VIF = 17.35) show serious multicollinearity (VIF > 10). gasPrice (VIF = 1.71) does not.
+
+Q3. Ano ang ibig sabihin ng mataas na VIF?
+
+   [TAGLISH] Halos ganap nang naipaliwanag ng ibang predictors ang variable na ito, kaya hindi ma-separate ng model ang kakaibang epekto nito sa travelTime. Unstable ang coefficient at hindi maaasahan ang p-value.
+   [FORMAL]  A high VIF means the variable is almost fully predictable from the other predictors, so the model cannot isolate its unique effect. Its coefficient becomes unstable and its p-value unreliable.
+
+Q4. Bakit hochly collinear ang milesTravelled at numDeliveries?
+
+   [TAGLISH] Sa totoong deliveries, parami ng deliveries = parami ng milyang tinatakbo. Natural silang magkakasabay gumalaw, kaya 'di magahiwalay ng data ang epekto nila.
+   [FORMAL]  In real delivery operations, more deliveries naturally require more travel miles. They move together, so their individual effects cannot be separated.
+
+Q5. Awtomatiko bang tatanggalin ang variable na may pinakamataas na VIF?
+
+   [TAGLISH] Hindi. Dapat batayan sa theory at layunin ng model. Sa case natin, magandang mag-drop ng isa sa kambal para stable ang interpretasyon, pero ang pagpili kung sino ang idrop ay base sa dahilan, hindi puro numero ang VIF.
+   [FORMAL]  No. Removal should be based on theory and the modeling objective, not solely on the VIF value. Here dropping one collinear predictor aids stable interpretation, but the choice of which to keep depends on substantive reasoning.

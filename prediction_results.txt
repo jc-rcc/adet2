@@ -1,0 +1,18 @@
+Part 10 - Prediction
+====================
+
+Use the final model to predict travelTime for a delivery trip with:
+milesTravelled = 90
+numDeliveries = 4
+gasPrice = 3.60
+
+Predicted travelTime: 6.8021 hours
+
+Interpretation:
+For a delivery trip with 90 miles travelled and a gas price of $3.60,
+the expected travel time is approximately 6.80 hours.
+
+Note: The prediction uses the final (reduced) model from Part 8, which
+uses milesTravelled and gasPrice. numDeliveries was removed in Part 8
+due to multicollinearity, so it is not included in the prediction even
+though its value was provided in the problem.
