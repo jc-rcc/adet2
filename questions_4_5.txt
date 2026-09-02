@@ -1,0 +1,34 @@
+4. Are milesTravelled and numDeliveries strongly correlated with each other?
+
+Analogy: Magkapatid na kambal (identical twins)
+Sabihin nating may kapitan sa isang competition na pipili ng isa para i-represent ang team. Dumating ang identical twins — parehong mukha, parehong damit, parehong height, parehong lakad.
+Parehong gusto nilang makapasok. Pero kapag tinanong ng kapitan, "Sino ba dito ang talagang magaling?" — hindi niya masagot, kasi pareho lang sila sa lahat ng bagay. Walang paraang matukoy kung sino ang may totoong talento.
+🥤 Sa regression:
+- milesTravelled at numDeliveries = kambal (correlation 0.96)
+- travelTime = ang planong kapitan (Y)
+- Tinatanong: "Sino ba talaga ang nagpapahaba ng travel time — ang distansya o ang bilang ng deliveries?"
+- Hindi masagot ng model kasi magkasunod silang gumagalaw. Kapag tumaas ang isa, tumaas ang isa pa.
+🥤 Problema dito:
+- Ang model ay nagtatalo kung kanino i-aassign ang "credit" (ang coefficient)
+- Puwedeng sabihin ng isang run: "distansya ang dahilan" (mataas na coefficient nito)
+- Sa susunod na run (kaunting pagbabago sa data): "deliveries ang dahilan" — salta-salta ang sagot (unstable)
+🥤 Solusyon:
+- Pumili lang ng isa sa kambal (hal. i-keep ang milesTravelled, i-drop ang numDeliveries, dahil halos pareho lang ang info na dala nila)
+- Ganyan din ang totoong buhay: kapag magkapareho lang ang impost ng dalawang variables, hindi mo kailangan pareho — sapat na ang isa.
+Sa maikli: Ang multicollinearity ay parang magkapatid na kambal na ginagawang imposible para sa regression na sabihin kung sino ang tunay na sanhi.
+
+5. Does a strong correlation between X and Y automatically prove that X causes Y? Explain?
+
+Ang tanong #5: "Does a strong correlation between X and Y automatically prove that X causes Y? Explain."
+Tagalog: "Kapag malakas ba ang relasyon sa pagitan ng X at Y, ibig bang sabihin na ang X ang dahilan (cause) ng Y? Ipaliwanag."
+Ano ang tinatanong: Pinaghiwalay nito ang dalawang konsepto:
+- Correlation = magkaugnay (magkasabay gumagalaw ang dalawang bagay)
+- Causation = sanhi (ang isa ay dahilan ng isa pa)
+Ang sagot: HINDI. Napakalakas ng correlation ng milesTravelled at travelTime (0.93) — ngunit hindi nito kusa pinapatunayan na "ang distansya ang dahilan kung bakit mahaba ang travel time".
+Bakit hindi sapat ang correlation para patunayang sanhi ito? (ito ang paliwanag)
+🥤 1. Maaaring may third factor. Baka may ibang salik na nakakaapekto sa pareho. Hal. traffic — kapag traffic, parehong nangangahaba ang time at mas mabagal ang takbo kaya mas maraming oras bawat milya. Hindi ang milya ang sanhi, kundi ang traffic.
+🥤 2. Maaaring baligtad. Minsan ang Y ang sanhi ng X, hindi kabaliktaran. (Sa kaso natin, hindi makatwiran na "ang travel time ang dahilan ng distansya," ngunit sa ibang sitwasyon ito'y posible.)
+🥤 3. Maaaring nagkataon lang (spurious). Dalawang bagay na madalas sabay lumalaki pero walang kinalaman sa isa't isa. Hal. ang bilang ng nakabili ng ice cream at ang bilang ng nalulunod sa beach — magka-correlate sila, ngunit ang init ng panahon ang totoong dahilan ng pareho.
+🥤 4. Para mapatunayan ang sanhi, kailangan: eksperimento na may kontrol, o patunay na ang pagbabago sa X ay hindi maiwasan na sinusundan ng pagbabago sa Y, at may mekanismo kung paano ito nangyayari.
+Sa madaling salita: matindi ang kaugnayan, ngunit ang kabara ng kaugnayan ay hindi pa sapat na patunay ng sanhi — dahil maaaring may ibang pinagmulan o nagkataon lamang.
+Ang maisusulat mo sa sagot (sa English, para sa assignment): "No. Correlation measures association, not causation. A strong r only shows X and Y move together; a third variable, reverse direction, or coincidence could explain it. Proving causation requires controlled experiments and a plausible mechanism."
