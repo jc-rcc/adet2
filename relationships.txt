@@ -1,0 +1,7 @@
+--- 6 Relationships ---
+1. milesTravelled,x1 vs numDeliveries, x2: 0.96 (Strong)
+2. milesTravelled,x1 vs gasPrice, x3: 0.36 (Moderate)
+3. milesTravelled,x1 vs travelTime,y: 0.93 (Strong)
+4. numDeliveries, x2 vs gasPrice, x3: 0.50 (Moderate)
+5. numDeliveries, x2 vs travelTime,y: 0.92 (Strong)
+6. gasPrice, x3 vs travelTime,y: 0.27 (Weak)
